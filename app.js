@@ -41,6 +41,9 @@ function promptUser(){
 
     .then(function(response){
         var role = response.role; 
+        var name = response.name;
+        var userId = response.id;
+        var email = response.email;
 
         switch (role) {
             case "Engineer":
@@ -52,6 +55,10 @@ function promptUser(){
                         message: "What is your github username?"
                     }
                 ])
+                .then(function(engineerRes){
+                     const newEngineer = new Engineer(name, userId, email, engineerRes.github)
+                     console.log(newEngineer);
+                })
                 break;
             case "Manager":
                 console.log("you're a manager");
@@ -62,6 +69,10 @@ function promptUser(){
                         message: "What is your office number?"
                     }
                 ])
+                .then(function(managerRes){
+                    const newManager = new Manager(name, userId, email, managerRes.officeNumber)
+                    console.log(newManager);
+                })
                 break;
             case "Intern":
                 console.log("you're an intern");
@@ -72,6 +83,10 @@ function promptUser(){
                         message: "What is the name of your school?"
                     }
                 ])
+                .then(function(internRes){
+                    const newIntern = new Intern(name, userId, email, internRes.school);
+                    console.log(newIntern);
+                })
                 break;
         }
     })
