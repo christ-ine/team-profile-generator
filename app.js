@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const teamMembers = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -58,7 +59,9 @@ function promptUser(){
                 .then(function(engineerRes){
                      const newEngineer = new Engineer(name, userId, email, engineerRes.github)
                      console.log(newEngineer);
+                     teamMembers.push(newEngineer);
                 })
+
                 break;
             case "Manager":
                 console.log("you're a manager");
@@ -72,6 +75,7 @@ function promptUser(){
                 .then(function(managerRes){
                     const newManager = new Manager(name, userId, email, managerRes.officeNumber)
                     console.log(newManager);
+                    teamMembers.push(newManager);
                 })
                 break;
             case "Intern":
@@ -86,11 +90,14 @@ function promptUser(){
                 .then(function(internRes){
                     const newIntern = new Intern(name, userId, email, internRes.school);
                     console.log(newIntern);
+                    teamMembers.push(newIntern);
                 })
                 break;
         }
     })
 }
+
+promptUser();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -112,4 +119,3 @@ function promptUser(){
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
-promptUser();
