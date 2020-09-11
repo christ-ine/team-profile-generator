@@ -122,21 +122,12 @@ function addMember(){
             promptUser()
         } else {
             console.log("you're done")
-            console.log(teamMembers);
-            console.log(render(teamMembers))
+            // console.log(teamMembers);
+            // console.log(render(teamMembers))
             const renderedHTML = render(teamMembers);
-            // createHTML(renderedHTML);
-
+            
             return writeFileAsync("./output/team.html", renderedHTML);
         }
-    })
-    // .then(function(renderedHTML){
-    //     // const renderedHTML = render(teamMembers);
-
-    //     return fs.writeFile("./output/team.html", renderedHTML)
-    // })
-    .then(function(){
-        console.log("Successfully created team profile!")
     })
     .catch(function(err){
         console.log(err);
@@ -144,19 +135,6 @@ function addMember(){
     
 }
 
-// function createHTML(renderedHTML){
-
-//     return fs.writeFile("./output/team.html", renderedHTML)
-// }
-
-// promptUser()
-// .then(createHTML(renderedHTML))
-// .then(function(){
-//     console.log("Successfully created team profile!")
-// })
-// .catch(function(err){
-//     console.log(err);
-// })
 
 
 
