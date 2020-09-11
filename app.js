@@ -4,6 +4,10 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const util = require("util");
+
+const writeFileAsync = util.promisify(fs.writeFile);
+
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -100,7 +104,8 @@ function promptUser(){
     })
 }
 
-promptUser();
+promptUser()
+  
 
 function addMember(){
     inquirer.prompt([
@@ -119,9 +124,39 @@ function addMember(){
             console.log("you're done")
             console.log(teamMembers);
             console.log(render(teamMembers))
+            const renderedHTML = render(teamMembers);
+            // createHTML(renderedHTML);
+
+            return writeFileAsync("./output/team.html", renderedHTML);
         }
     })
+    // .then(function(renderedHTML){
+    //     // const renderedHTML = render(teamMembers);
+
+    //     return fs.writeFile("./output/team.html", renderedHTML)
+    // })
+    .then(function(){
+        console.log("Successfully created team profile!")
+    })
+    .catch(function(err){
+        console.log(err);
+    })
+    
 }
+
+// function createHTML(renderedHTML){
+
+//     return fs.writeFile("./output/team.html", renderedHTML)
+// }
+
+// promptUser()
+// .then(createHTML(renderedHTML))
+// .then(function(){
+//     console.log("Successfully created team profile!")
+// })
+// .catch(function(err){
+//     console.log(err);
+// })
 
 
 
