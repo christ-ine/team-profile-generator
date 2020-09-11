@@ -60,6 +60,7 @@ function promptUser(){
                      const newEngineer = new Engineer(name, userId, email, engineerRes.github)
                      console.log(newEngineer);
                      teamMembers.push(newEngineer);
+                     addMember();
                 })
 
                 break;
@@ -76,6 +77,7 @@ function promptUser(){
                     const newManager = new Manager(name, userId, email, managerRes.officeNumber)
                     console.log(newManager);
                     teamMembers.push(newManager);
+                    addMember();
                 })
                 break;
             case "Intern":
@@ -91,6 +93,7 @@ function promptUser(){
                     const newIntern = new Intern(name, userId, email, internRes.school);
                     console.log(newIntern);
                     teamMembers.push(newIntern);
+                    addMember();
                 })
                 break;
         }
@@ -98,6 +101,30 @@ function promptUser(){
 }
 
 promptUser();
+
+function addMember(){
+    inquirer.prompt([
+        {
+            type: "list",
+            name: "addAnother",
+            message: "Would you like to add another team member?",
+            choices: ["Yes", "No"]
+
+        }
+    ])
+    .then(function(confirmRes){
+        if(confirmRes.addAnother === "Yes"){
+            promptUser()
+        } else {
+            console.log("you're done")
+            console.log(teamMembers);
+            console.log(render(teamMembers))
+        }
+    })
+}
+
+
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
