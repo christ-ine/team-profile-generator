@@ -121,7 +121,7 @@ function addMember(){
         if(confirmRes.addAnother === "Yes"){
             promptUser()
         } else {
-            console.log("you're done")
+            console.log("Successfully generated team profile!")
             // console.log(teamMembers);
             // console.log(render(teamMembers))
             const renderedHTML = render(teamMembers);
