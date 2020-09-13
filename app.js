@@ -52,7 +52,7 @@ function promptUser(){
 
         switch (role) {
             case "Engineer":
-                console.log("you're an engineer");
+                // console.log("you're an engineer");
                 inquirer.prompt([
                     {
                         type: "input",
@@ -62,14 +62,14 @@ function promptUser(){
                 ])
                 .then(function(engineerRes){
                      const newEngineer = new Engineer(name, userId, email, engineerRes.github)
-                     console.log(newEngineer);
+                    //  console.log(newEngineer);
                      teamMembers.push(newEngineer);
                      addMember();
                 })
 
                 break;
             case "Manager":
-                console.log("you're a manager");
+                // console.log("you're a manager");
                 inquirer.prompt([
                     {
                         type: "input",
@@ -79,13 +79,13 @@ function promptUser(){
                 ])
                 .then(function(managerRes){
                     const newManager = new Manager(name, userId, email, managerRes.officeNumber)
-                    console.log(newManager);
+                    // console.log(newManager);
                     teamMembers.push(newManager);
                     addMember();
                 })
                 break;
             case "Intern":
-                console.log("you're an intern");
+                // console.log("you're an intern");
                 inquirer.prompt([
                     {
                         type: "input",
@@ -95,7 +95,7 @@ function promptUser(){
                 ])
                 .then(function(internRes){
                     const newIntern = new Intern(name, userId, email, internRes.school);
-                    console.log(newIntern);
+                    // console.log(newIntern);
                     teamMembers.push(newIntern);
                     addMember();
                 })
